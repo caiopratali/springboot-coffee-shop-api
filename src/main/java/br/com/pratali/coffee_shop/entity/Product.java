@@ -1,5 +1,6 @@
 package br.com.pratali.coffee_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -18,7 +19,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
-    @JsonManagedReference
+    @JsonBackReference
     private Category category;
 
     @ManyToMany
