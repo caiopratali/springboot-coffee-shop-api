@@ -28,7 +28,7 @@ public class CategoryService {
         Category x = categoryRepository.findById(id).orElse(null);
 
         if (x != null) {
-            x.setCategoryName(category.getCategoryName());
+            x.setName(category.getName());
             return categoryRepository.save(x);
         } else {
             return null;
