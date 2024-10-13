@@ -18,7 +18,7 @@ public class Product {
     private String productName;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id")
     @JsonBackReference
     private Category category;
 
