@@ -26,8 +26,39 @@ public class CategoryController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getById(@PathVariable Integer id) {
+        Category category = categoryService.getById(id);
+
+        if (category == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(category, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Category> saveCategory(@RequestBody Category category) {
         return new ResponseEntity<>(categoryService.saveCategory(category), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Integer id, @RequestBody Category category) {
+        Category updatedCategory = categoryService.updateCategory(id, category);
+
+        if (updatedCategory == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return  new ResponseEntity<>(updatedCategory, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteCategory(@PathVariable Integer id) {
+        if (!categoryService.deleteCategory(id)) {
+            return new ResponseEntity<>(false, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
